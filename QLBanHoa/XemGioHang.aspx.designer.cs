@@ -11,25 +11,34 @@ namespace QLBanHoa
 {
 
 
-    public partial class XemHoa
+    public partial class XemGioHang
     {
 
         /// <summary>
-        /// dsLoaiTheoNav control.
+        /// gvGioHang control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsLoaiTheoNav;
+        protected global::System.Web.UI.WebControls.GridView gvGioHang;
 
         /// <summary>
-        /// rptHoa control.
+        /// lbTongTien control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptHoa;
+        protected global::System.Web.UI.WebControls.Label lbTongTien;
+
+        /// <summary>
+        /// btDatHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btDatHang;
     }
 }

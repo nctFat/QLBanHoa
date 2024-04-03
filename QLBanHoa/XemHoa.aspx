@@ -34,17 +34,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div  class="container mt-5">
-            <asp:SqlDataSource ID= "dsLoai" runat="server" ConnectionString="<%$ ConnectionStrings:HoaTuoiDBConnectionString %>" SelectCommand="SELECT * FROM [Loai]"></asp:SqlDataSource>
-    <div style="text-align: center;"> <!-- Để căn giữa theo chiều ngang -->
-        Danh mục loại: <asp:DropDownList ID="ddlLoai" AutoPostBack="true" runat="server" DataSourceID="dsLoai" DataTextField="TenLoai" DataValueField="MaLoai" style="margin-bottom: 20px;"></asp:DropDownList>
     </div>
-    <asp:SqlDataSource ID="dsHoaTheoLoai" runat="server" ConnectionString="<%$ ConnectionStrings:HoaTuoiDBConnectionString %>" SelectCommand="SELECT * FROM [Hoa] WHERE ([MaLoai] = @MaLoai)">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="ddlLoai" DefaultValue="1" Name="MaLoai" PropertyName="SelectedValue" Type="Int32" />
-        </SelectParameters>
-    </asp:SqlDataSource>
+        <asp:SqlDataSource ID="dsLoaiTheoNav" runat="server" ConnectionString="<%$ ConnectionStrings:HoaTuoiDBConnectionString %>" SelectCommand="SELECT * FROM [Hoa] WHERE ([MaLoai] = @MaLoai)">
+            <SelectParameters>
+                <asp:QueryStringParameter Name="MaLoai" DefaultValue="1" QueryStringField="maloai" Type="Int32" />
+            </SelectParameters>
+            </asp:SqlDataSource>
     <div class="row">
-         <asp:Repeater ID="rptHoa" runat="server" DataSourceID="dsHoaTheoLoai">
+         <asp:Repeater ID="rptHoa" runat="server" DataSourceID="dsLoaiTheoNav">
         <ItemTemplate>
             <div class="col-md-4 text-center">
                 <a href="#">
@@ -52,12 +49,13 @@
                 </a>
                 <p><%# Eval("TenHoa") %></p>
                 <p>Giá bán: <span style="color:red;"><%# Eval("gia","{0:#,##0} VNĐ") %></span> </p>
-                <asp:Button ID="btnAddToCart" runat="server" Text="Add To Cart" CssClass="btn btn-success"/> <br />
+                <asp:Button ID="btnAddToCart" runat="server" Text="Thêm Vào Giỏ Hàng" CommandArgument='<%# Eval("MaHoa") %>' OnClick="btAddToCart_Click" CssClass="btn btn-success"/> <br />
+
             </div>
 
         </ItemTemplate>
+
     </asp:Repeater>
 
-    </div>
     </div>
 </asp:Content>
